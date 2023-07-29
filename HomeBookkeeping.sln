@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeBookkeeping.Application
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeBookkeeping.Infrastructure", "HomeBookkeeping.Infrastructure\HomeBookkeeping.Infrastructure.csproj", "{CE57E195-7E2A-4421-A73B-F4A6CEEE0D7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeBookkeeping.MVC", "HomeBookkeeping.MVC\HomeBookkeeping.MVC.csproj", "{02950671-4106-4A8E-B044-B8FBB69CBDDE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeBookkeeping", "HomeBookkeeping.MVC\HomeBookkeeping.csproj", "{02950671-4106-4A8E-B044-B8FBB69CBDDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
