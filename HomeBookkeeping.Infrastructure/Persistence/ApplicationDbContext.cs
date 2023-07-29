@@ -21,7 +21,6 @@ namespace HomeBookkeeping.Infrastructure.Persistence
         }
 
         public DbSet<Transaction> Transactions { get; set; }
-
         public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

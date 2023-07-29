@@ -14,10 +14,10 @@ namespace HomeBookkeeping.Infrastructure
             services.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options =>
             {
                 options.UseNpgsql(connectionString: configuration.GetConnectionString("DbConnection"));
-                //options.UseLazyLoadingProxies();
+                options.UseLazyLoadingProxies();
             });
 
-            //services.AddScoped<AuditableEntitySaveChangesInterceptor>();
+            services.AddScoped<AuditableEntitySaveChangesInterceptor>();
 
             services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
 
