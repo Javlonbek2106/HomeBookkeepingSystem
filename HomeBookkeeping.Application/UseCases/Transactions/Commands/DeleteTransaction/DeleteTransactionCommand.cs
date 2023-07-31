@@ -1,4 +1,5 @@
-﻿using HomeBookkeeping.Application.Common.Interfaces;
+﻿using HomeBookkeeping.Application.Common.Exceptions;
+using HomeBookkeeping.Application.Common.Interfaces;
 using HomeBookkeeping.Domain.Entities;
 using MediatR;
 

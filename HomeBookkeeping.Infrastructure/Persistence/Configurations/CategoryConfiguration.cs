@@ -12,8 +12,7 @@ namespace MarketManager.Infrastructure.Persistence.Configurations
                 .IsRequired()
                 .HasMaxLength(20);
 
-            builder.Property(supplier => supplier.ExpenceIncomeType)
-            .HasMaxLength(40)
+            builder.Property(supplier => supplier.ExpenseIncomeType)
             .IsRequired();
         }
     }

@@ -14,6 +14,7 @@ namespace HomeBookkeeping.Infrastructure
             services.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options =>
             {
                 options.UseNpgsql(connectionString: configuration.GetConnectionString("DbConnection"));
+
                 options.UseLazyLoadingProxies();
             });
 

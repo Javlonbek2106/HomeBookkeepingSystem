@@ -1,0 +1,183 @@
+﻿
+//SIDEBAR
+.wrapper {
+    width: 100%;
+}
+
+#sidebar {
+    min-width: 270px;
+    max-width: 270px;
+    background: $primary;
+    color: #fff;
+    transition: all 0.3s;
+    &.active
+
+{
+    min-width: 80px;
+    max-width: 80px;
+    text-align: center;
+    ul .components
+
+{
+    li
+
+{
+    font-size: 14px;
+    a
+
+{
+    padding: 10px 0;
+    span
+
+{
+    margin-right: 0;
+    display: block;
+    font-size: 24px;
+}
+
+}
+}
+}
+
+.logo {
+    padding: 10px 0;
+}
+
+.footer {
+    display: none;
+}
+
+}
+
+.logo {
+    display: block;
+    color: $white;
+    font-weight: 900;
+    padding: 10px 30px;
+    @include transition(.3s);
+}
+
+ul.components {
+    padding: 0;
+    @include transition(.3s);
+}
+
+ul {
+    li
+
+{
+    font-size: 16px;
+    >ul
+
+{
+    margin-left: 10px;
+    li
+
+{
+    font-size: 14px;
+}
+
+}
+
+a {
+    padding: 10px 30px;
+    display: block;
+    color: rgba(255,255,255,1);
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    span
+
+{
+    margin-right: 15px;
+
+    @include media-breakpoint-down(md) {
+        display: block;
+    }
+}
+
+&:hover {
+    color: $white;
+}
+
+}
+
+&.active {
+    > a
+
+{
+    background: transparent;
+    color: $white;
+}
+
+}
+}
+}
+
+
+@include media-breakpoint-down(md) {
+    min-width: 80px;
+    max-width: 80px;
+    text-align: center;
+    margin-left: -80px !important;
+
+    &.active {
+        margin-left: 0 !important;
+    }
+}
+
+}
+
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+#sidebarCollapse {
+    span
+
+{
+    @include media-breakpoint-down(md) {
+        display: none;
+    }
+}
+
+}
+
+.footer {
+    padding: 0 30px;
+
+    @include media-breakpoint-down(md) {
+        display: none;
+    }
+}
+
+#content {
+    width: 100%;
+    padding: 0;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+
+.btn {
+    &.btn-primary
+
+{
+    background: $primary;
+    border-color: $primary;
+    &:hover, &:focus
+
+{
+    background: $primary !important;
+    border-color: $primary !important;
+}
+
+}
+}

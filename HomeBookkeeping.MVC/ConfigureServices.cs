@@ -1,6 +1,11 @@
 ﻿using System.Text.Json.Serialization;
 using HomeBookkeeping.Application.Common.Interfaces;
+using HomeBookkeeping.Infrastructure.Persistence;
+using HomeBookkeeping.Infrastructure.Persistence.Interceptors;
 using HomeBookkeeping.Infrastructure.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 
 namespace HomeBookkeeping.API
@@ -9,15 +14,29 @@ namespace HomeBookkeeping.API
     {
         public static IServiceCollection AddApi(this IServiceCollection services, IConfiguration configuration)
         {
-            SerilogSettings(configuration);
+            // Add infrastructure services
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseNpgsql(connectionString: configuration.GetConnectionString("DbConnection"));
+                options.UseLazyLoadingProxies();
+            });
 
-            services.AddScoped<ICurrentUserService, CurrentUserService>();
+            services.AddScoped<AuditableEntitySaveChangesInterceptor>();
+            services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
+
+            // Add application services
+            //services.AddScoped<ICurrentUserService, CurrentUserService>();
+
+            // Add other API services
             services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
             services.AddEndpointsApiExplorer();
             services.AddAuthorization();
             services.AddHttpContextAccessor();
+
+            // Configure Serilog
+            SerilogSettings(configuration);
 
             return services;
         }

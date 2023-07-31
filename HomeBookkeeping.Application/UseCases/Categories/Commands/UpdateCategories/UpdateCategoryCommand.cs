@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HomeBookkeeping.Application.Common.Exceptions;
 using HomeBookkeeping.Application.Common.Interfaces;
 using MediatR;
 using Category = HomeBookkeeping.Domain.Entities.Category;

@@ -7,11 +7,11 @@ namespace HomeBookkeeping.Infrastructure.Persistence.Interceptors
 {
     public class AuditableEntitySaveChangesInterceptor : SaveChangesInterceptor
     {
-        private readonly ICurrentUserService _currentUserService;
+        //private readonly ICurrentUserService _currentUserService;
 
-        public AuditableEntitySaveChangesInterceptor(ICurrentUserService currentUserService)
+        public AuditableEntitySaveChangesInterceptor(/*ICurrentUserService currentUserService*/)
         {
-            _currentUserService = currentUserService;
+            //_currentUserService = currentUserService;
         }
 
         public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
@@ -36,13 +36,13 @@ namespace HomeBookkeeping.Infrastructure.Persistence.Interceptors
             {
                 if (entry.State == EntityState.Added)
                 {
-                    entry.Entity.CreatedBy = _currentUserService.Username;
+                    //entry.Entity.CreatedBy = _currentUserService.Username;
                     entry.Entity.CreatedDate = DateTime.Now;
                 }
 
                 if (entry.State == EntityState.Added || entry.State == EntityState.Modified)
                 {
-                    entry.Entity.ModifyBy = _currentUserService.Username;
+                    //entry.Entity.ModifyBy = _currentUserService.Username;
                     entry.Entity.ModifyDate = DateTime.Now;
                 }
             }

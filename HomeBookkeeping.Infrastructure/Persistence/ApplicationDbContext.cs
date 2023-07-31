@@ -6,33 +6,32 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace HomeBookkeeping.Infrastructure.Persistence
+namespace HomeBookkeeping.Infrastructure.Persistence;
+
+public class ApplicationDbContext : IdentityDbContext<IdentityUser>, IApplicationDbContext
 {
-    public class ApplicationDbContext : IdentityDbContext<IdentityUser>, IApplicationDbContext
+    private readonly AuditableEntitySaveChangesInterceptor _auditableEntitySaveChangesInterceptor;
+    
+    public ApplicationDbContext(
+        DbContextOptions<ApplicationDbContext> options,
+        AuditableEntitySaveChangesInterceptor auditableEntitySaveChangesInterceptor)
+        : base(options)
     {
-        private readonly AuditableEntitySaveChangesInterceptor _auditableEntitySaveChangesInterceptor;
+        _auditableEntitySaveChangesInterceptor = auditableEntitySaveChangesInterceptor;
+    }
 
-        public ApplicationDbContext(
-            DbContextOptions<ApplicationDbContext> options,
-            AuditableEntitySaveChangesInterceptor auditableEntitySaveChangesInterceptor)
-            : base(options)
-        {
-            _auditableEntitySaveChangesInterceptor = auditableEntitySaveChangesInterceptor;
-        }
+    public DbSet<Transaction> Transactions { get; set; }
+    public DbSet<Category> Categories { get; set; }
 
-        public DbSet<Transaction> Transactions { get; set; }
-        public DbSet<Category> Categories { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        base.OnModelCreating(modelBuilder);
+    }
 
-            base.OnModelCreating(modelBuilder);
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.AddInterceptors(_auditableEntitySaveChangesInterceptor);
-        }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.AddInterceptors(_auditableEntitySaveChangesInterceptor);
     }
 }

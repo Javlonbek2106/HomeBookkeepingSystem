@@ -6,7 +6,7 @@ using MediatR;
 
 namespace HomeBookkeeping.Application.UseCases.Categories.Queries.GetAllCategories
 {
-    public record GetAllCategoriesQuery(int PageNumber = 1, int PageSize = 10) : IRequest<IEnumerable<CategoryResponse>>;
+    public record GetAllCategoriesQuery() : IRequest<IEnumerable<CategoryResponse>>;
 
     public class GetAllCategoriesQueryHandler : IRequestHandler<GetAllCategoriesQuery, IEnumerable<CategoryResponse>>
     {
