@@ -1,4 +1,5 @@
 ﻿using HomeBookkeeping.Api.Filters;
+using HomeBookkeeping.Application.UseCases.Categories.Queries.GetAllCategories;
 using HomeBookkeeping.Application.UseCases.Transactions.Commands.CreateTransaction;
 using HomeBookkeeping.Application.UseCases.Transactions.Commands.DeleteTransaction;
 using HomeBookkeeping.Application.UseCases.Transactions.Commands.UpdateTransaction;
@@ -16,8 +17,7 @@ namespace HomeBookkeeping.Controllers
         [HttpGet]
         public async Task<IActionResult> CreateTransaction()
         {
-            //ViewData["subjects"] = subjects;
-            //ViewData["students"] = students;
+            ViewData["categories"] = await Mediator.Send(new GetAllCategoriesQuery());
             return View();
         }
         [HttpPost]

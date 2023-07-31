@@ -19,12 +19,12 @@ namespace HomeBookkeeping
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
 
-            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(options =>
-                {
-                    options.LoginPath = "/Account/Login";
-                    options.LogoutPath = "/Account/Logout";
-                });
+            //builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            //    .AddCookie(options =>
+            //    {
+            //        options.LoginPath = "/Account/Login";
+            //        options.LogoutPath = "/Account/Logout";
+            //    });
             builder.Services.AddRazorPages();
             builder.Services.AddControllersWithViews();
             var app = builder.Build();

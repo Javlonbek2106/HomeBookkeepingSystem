@@ -1,6 +1,6 @@
 ﻿namespace HomeBookkeeping.Domain.States
 {
-    public enum ExpenseIncomeType : byte
+    public enum ExpenseIncomeType
     {
         доход,
         расход
